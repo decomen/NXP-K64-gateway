@@ -1,0 +1,25 @@
+---- MB_ID_MAX Matches (24 in 5 files) ----
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static UCHAR    ucMBAddress[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static eMBMode  eMBCurrentMode[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):} eMBState[MB_ID_MAX] = { a };
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static peMBFrameSend peMBFrameSendCur[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static pvMBFrameStart pvMBFrameStartCur[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static pvMBFrameStop pvMBFrameStopCur[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static peMBFrameReceive peMBFrameReceiveCur[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static pvMBFrameClose pvMBFrameCloseCur[MB_ID_MAX];
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):BOOL ( *pxMBFrameCBByteReceived[MB_ID_MAX] ) ( UCHAR ucPort );
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):BOOL( *pxMBFrameCBTransmitterEmpty[MB_ID_MAX] ) ( UCHAR ucPort );
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):BOOL( *pxMBPortCBTimerExpired[MB_ID_MAX] ) ( UCHAR ucPort );
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):BOOL( *pxMBFrameCBReceiveFSMCur[MB_ID_MAX] ) ( UCHAR ucPort );
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):BOOL( *pxMBFrameCBTransmitFSMCur[MB_ID_MAX] ) ( UCHAR ucPort );
+Mb.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus):static xMBFunctionHandler xFuncHandlers[MB_ID_MAX][MB_FUNC_HANDLERS_MAX] = {
+Mb.h (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\include):#define MB_ID_MAX (3)
+Mbfuncother.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\functions):static UCHAR    ucMBSlaveID[MB_ID_MAX][MB_FUNC_OTHER_REP_SLAVEID_BUF];
+Mbfuncother.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\functions):static USHORT   usMBSlaveIDLen[MB_ID_MAX];
+Mbrtu.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\rtu):static volatile eMBSndState eSndState[MB_ID_MAX];
+Mbrtu.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\rtu):static volatile eMBRcvState eRcvState[MB_ID_MAX];
+Mbrtu.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\rtu):volatile UCHAR  ucRTUBuf[MB_ID_MAX][MB_SER_PDU_SIZE_MAX];
+Mbrtu.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\rtu):static volatile UCHAR *pucSndBufferCur[MB_ID_MAX];
+Mbrtu.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\rtu):static volatile USHORT usSndBufferCount[MB_ID_MAX];
+Mbrtu.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\modbus\rtu):static volatile USHORT usRcvBufferPos[MB_ID_MAX];
+Portevent.c (e:\rtu项目\rtu_terminal\rt-thread\components\net\freemodbus\port):static struct rt_event     xSlaveOsEvent[MB_ID_MAX];;

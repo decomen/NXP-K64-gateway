@@ -1,0 +1,1955 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ST8803-E 网数网关(RTU)通讯设备</title>
+	<script src="js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript">
+    "object" != typeof JSON && (JSON = {}), function () { "use strict"; function f(t) { return 10 > t ? "0" + t : t } function this_value() { return this.valueOf() } function quote(t) { return rx_escapable.lastIndex = 0, rx_escapable.test(t) ? '"' + t.replace(rx_escapable, function (t) { var e = meta[t]; return "string" == typeof e ? e : "\\u" + ("0000" + t.charCodeAt(0).toString(16)).slice(-4) }) + '"' : '"' + t + '"' } function str(t, e) { var r, n, o, u, f, a = gap, i = e[t]; switch (i && "object" == typeof i && "function" == typeof i.toJSON && (i = i.toJSON(t)), "function" == typeof rep && (i = rep.call(e, t, i)), typeof i) { case "string": return quote(i); case "number": return isFinite(i) ? i + "" : "null"; case "boolean": case "null": return i + ""; case "object": if (!i) return "null"; if (gap += indent, f = [], "[object Array]" === Object.prototype.toString.apply(i)) { for (u = i.length, r = 0; u > r; r += 1) f[r] = str(r, i) || "null"; return o = 0 === f.length ? "[]" : gap ? "[\n" + gap + f.join(",\n" + gap) + "\n" + a + "]" : "[" + f.join(",") + "]", gap = a, o } if (rep && "object" == typeof rep) for (u = rep.length, r = 0; u > r; r += 1) "string" == typeof rep[r] && (n = rep[r], o = str(n, i), o && f.push(quote(n) + (gap ? ": " : ":") + o)); else for (n in i) Object.prototype.hasOwnProperty.call(i, n) && (o = str(n, i), o && f.push(quote(n) + (gap ? ": " : ":") + o)); return o = 0 === f.length ? "{}" : gap ? "{\n" + gap + f.join(",\n" + gap) + "\n" + a + "}" : "{" + f.join(",") + "}", gap = a, o } } var rx_one = /^[\],:{}\s]*$/, rx_two = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, rx_three = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, rx_four = /(?:^|:|,)(?:\s*\[)+/g, rx_escapable = /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, rx_dangerous = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g; "function" != typeof Date.prototype.toJSON && (Date.prototype.toJSON = function () { return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + f(this.getUTCMonth() + 1) + "-" + f(this.getUTCDate()) + "T" + f(this.getUTCHours()) + ":" + f(this.getUTCMinutes()) + ":" + f(this.getUTCSeconds()) + "Z" : null }, Boolean.prototype.toJSON = this_value, Number.prototype.toJSON = this_value, String.prototype.toJSON = this_value); var gap, indent, meta, rep; "function" != typeof JSON.stringify && (meta = { "\b": "\\b", "	": "\\t", "\n": "\\n", "\f": "\\f", "\r": "\\r", '"': '\\"', "\\": "\\\\" }, JSON.stringify = function (t, e, r) { var n; if (gap = "", indent = "", "number" == typeof r) for (n = 0; r > n; n += 1) indent += " "; else "string" == typeof r && (indent = r); if (rep = e, e && "function" != typeof e && ("object" != typeof e || "number" != typeof e.length)) throw Error("JSON.stringify"); return str("", { "": t }) }), "function" != typeof JSON.parse && (JSON.parse = function (text, reviver) { function walk(t, e) { var r, n, o = t[e]; if (o && "object" == typeof o) for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (n = walk(o, r), void 0 !== n ? o[r] = n : delete o[r]); return reviver.call(t, e, o) } var j; if (text += "", rx_dangerous.lastIndex = 0, rx_dangerous.test(text) && (text = text.replace(rx_dangerous, function (t) { return "\\u" + ("0000" + t.charCodeAt(0).toString(16)).slice(-4) })), rx_one.test(text.replace(rx_two, "@").replace(rx_three, "]").replace(rx_four, ""))) return j = eval("(" + text + ")"), "function" == typeof reviver ? walk({ "": j }, "") : j; throw new SyntaxError("JSON.parse") }) }();
+    </script>
+    <script language="javascript" src="js/rtuset.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" type="text/css" href="css/stylepc.css">
+
+    <script type="text/javascript">
+        function exit()
+        {
+            self.location = 'login.html';
+        }
+    </script>
+
+
+</head>
+
+
+<body>
+
+	<div class="container">
+    	<div class="top">
+    	<div class="top_l"><span><img src="images/logo.png"></span><p>数据网关（RTU）型号：ST-8803-E</p></div>
+        <div class="top_r"><a href="#" onclick="exit();">退出</a><iframe id="iframe" src="refresh.html" frameborder="0" style="width:0px;height:0px;"></iframe><input id="txt_refresh_name" type="hidden" value="1001" /></div>
+        </div>
+    </div>
+	<div class="container" style="min-height:700px;">
+		<div class="menu">
+            <h3 onclick="bullet('1001')">系统状态</h3>
+			<ul class="ulmenu1">
+				<li><a class="selected" href="#tab1" onclick="bullet('1001')">设备基本信息</a></li>
+				<li><a href="#" onclick="bullet('1002')">系统资源</a></li>
+				<li><a href="#" onclick="bullet('1004')">已连接无线节点</a></li>
+                <li><a href="#" onclick="bullet('1003')">网络信息</a></li>
+			</ul>
+
+            <h3 onclick="bullet('1005')">系统参数配置</h3>
+			<ul class="ulmenu2">
+				<li><a href="#" class="selected" onclick="bullet('1005')">基本设置</a></li>
+				<li><a href="#" onclick="bullet('1006')">日志</a></li>
+				<li><a href="#" onclick="bullet('1007')">管理权限</a></li>
+                <li><a href="#" onclick="bullet('1023')">升级备份</a></li>
+			</ul>
+
+            <h3 onclick="bullet('1008')">以太网参数</h3>
+			<ul class="ulmenu3">
+				<li><a class="selected" href="#tab1" onclick="bullet('1008')">远程传输设置</a></li>
+				<li><a href="#" onclick="bullet('1009')">本地网络配置</a></li>
+		
+			</ul>
+            <h3 onclick="bullet('1010')">ZIGBEE 配置</h3>
+			<ul class="ulmenu4">
+				
+			</ul>
+            <h3 onclick="bullet('1011')">LORA配置</h3>
+			<ul class="ulmenu5">
+				
+			</ul>
+            <h3 onclick="bullet('1012')">GPRS 配置</h3>
+			<ul class="ulmenu6">
+				<li><a class="selected" href="#tab1" onclick="bullet('1012')">工作模式及中心配置</a></li>
+				<li><a href="#" onclick="bullet('1013')">GPRS工作参数配置</a></li>
+				<li><a href="#" onclick="bullet('1014')">无线参数</a></li>
+			</ul>
+            <h3 onclick="bullet('1015')">串口配置</h3>
+			<ul class="ulmenu7">
+			</ul>
+            <h3 onclick="bullet('1016')">开关量输入设置</h3>
+			<ul class="ulmenu8">
+				
+			</ul>
+            <h3 onclick="bullet('1017')">开关量输出设置</h3>
+			<ul class="ulmenu9">
+				
+			</ul>
+            <h3 onclick="bullet('1018')">模拟量输入设置</h3>
+			<ul class="ulmenub">
+				
+			</ul>
+
+            <!--
+            <h3 onclick="bullet('1020')">脚本执行器</h3>
+			<ul class="ulmenua"></ul>
+            -->
+
+            <h3 onclick="bullet('1021')">变量管理</h3>
+			<ul class="ulmenuc">
+				<li><a class="selected" href="#tab1" onclick="bullet('1021')">采集变量</a></li>
+				<li><a href="#" onclick="bullet('1022')">用户变量</a></li>
+				
+			</ul>
+            
+		</div>
+		
+		<div class="content">
+			<div class="get-menu">
+			</div>
+
+			<div class="menu1 menu_tab">
+				<div id="tab1" class="tab active">
+					<h2>设备基本信息</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	设备ID：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_dev_id"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	硬件版本：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_dev_hw_ver"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	固件版本：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_dev_sw_ver"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	Zigbee 固件版本：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_dev_zigbee_ver"></div>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                产品序列号：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_dev_oem"></div>
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	MAC 地址：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_dev_mac"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	系统时间：
+                            </li>
+                            
+                            <li class="detail_r">
+                                <div id="rtu_dev_time"></div>
+                            </li>
+                            
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	运行时间：
+                            </li>
+                            <li class="detail_r">
+                                <div id="rtu_run_time"></div>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li>
+                                <div style="text-align:left;"><input type="button" onclick="devTimeSync();" value="系统时间对时" style="height:25px;width:100px;text-align:center !important"></div>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+				</div>
+				<div  id="tab2" class="tab">
+					<h2>系统资源</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	CPU使用率：
+                            </li>
+                            <li class="detail_r">
+                                <div id="sys_cpu_rate"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	内存占用：
+                            </li>
+                            <li class="detail_r">
+                                <div id="sys_memory_use"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	内存剩余：
+                            </li>
+                            <li class="detail_r">
+                                <div id="sys_memory_free"></div>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	存储ROM：
+                            </li>
+                            <li class="detail_r">
+                                <div id="sys_store_rom"></div>
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	SD卡：
+                            </li>
+                            <li class="detail_r">
+                                <div id="sys_store_sd"></div>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+
+				<div  id="tab3" class="tab">
+					<h2>已连接无线节点（zigbee）</h2>
+                    <div class="innerbox">
+                        <div id="div_root"></div>
+                    </div>
+				</div>
+
+
+                <div id="tab1" class="tab">
+                    <h2>网络信息</h2>
+                    <div class="innerbox">
+
+                        <table style="width:96%;" border="0">
+                            <tr><td>
+                                    <table style="width:90%">
+                                        <tr>
+                                            <td style="background-color:#8FC6FC" colspan="2">基本信息</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">DHCP开关：</td>
+                                            <td style="text-align:left"><div id="sys_net_dhcp"></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">MAC 地址：</td>
+                                            <td style="text-align:left"><div id="sys_net_mac"></div></td>
+                                        </tr>
+										
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">地址：</td>
+                                            <td style="text-align:left"><div id="sys_net_address"></div></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">子网掩码：</td>
+                                            <td style="text-align:left"><div id="sys_net_mask"></div></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">网关：</td>
+                                            <td style="text-align:left"><div id="sys_net_gate"></div></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">DNS 1：</td>
+                                            <td style="text-align:left"><div id="sys_net_dns_1"></div></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">DNS 2：</td>
+                                            <td style="text-align:left"><div id="sys_net_dns_2"></div></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td style="text-align:right;width:50px;">连接状态：</td>
+                                            <td style="text-align:left"><div id="sys_net_link"></div></td>
+                                        </tr>
+
+
+                                    </table></td><td>
+                                                     <table style="width:90%">
+                                                         <tr>
+                                                             <td style="background-color:#8FC6FC" colspan="2">GPRS网络信息</td>
+                                                         </tr>
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">运营商名称：</td>
+                                                             <td style="text-align:left"><div id="gprs_network_name"></div></td>
+                                                         </tr>
+
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">网络注册状态：</td>
+                                                             <td style="text-align:left"><div id="gprs_network_creg"></div></td>
+                                                         </tr>
+
+
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">信号质量：</td>
+                                                             <td style="text-align:left"><div id="gprs_network_csq"></div></td>
+                                                         </tr>
+
+
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">小区信息：</td>
+                                                             <td style="text-align:left"><div id="gprs_network_area"></div></td>
+                                                         </tr>
+
+
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">&nbsp;</td>
+                                                             <td>&nbsp;</td>
+                                                         </tr>
+
+
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">&nbsp;</td>
+                                                             <td>&nbsp;</td>
+                                                         </tr>
+
+
+                                                         <tr>
+                                                             <td style="text-align:right;width:50px;">&nbsp;</td>
+                                                             <td>&nbsp;</td>
+                                                         </tr>
+
+
+                                                     </table></td></tr>
+                        </table>
+
+                        <h2>以太网连接状态</h2>
+                        <div id="div_network"></div>
+
+                        <h2>GPRS连接状态</h2>
+                        <div id="div_gprs"></div>
+
+
+                    </div>
+                </div>
+
+			</div>
+
+			<div class="menu2 menu_tab">
+				<div id="tab-1" class="tab">
+					<h2>基本设置</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	主机名：
+                            </li>
+                            <li class="detail_r">
+                            	<input type="text" id="base_hostname">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	时间同步：
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="base_time" value="YES" id="base_time_yes" />&nbsp;是&nbsp;<input type="radio" name="base_time" value="NO" id="base_time_no" />&nbsp;否
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	候选NTP服务器1：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="base_ntp1">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	候选NTP服务器2：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="base_ntp2">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_Time_Synchronization();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+				</div>
+
+				<div  id="tab-2" class="tab">
+					<h2>日志</h2>
+                    <div class="innerbox">
+
+
+
+                        <table style="width:96%">
+                            <tr>
+                                <td style="text-align:right;width:100px;">系统日志缓冲区大小：</td>
+                                <td style="text-align:left"><input type="text" id="log_size" style="height:25px;width:200px"></td>
+                                <td style="text-align:right;width:100px;">日志记录等级：</td>
+                                <td style="text-align:left">
+                                    <select id="log_level" style="height:25px;width:200px">
+                                        <option value="1">调试</option>
+                                        <option value="2">信息</option>
+                                        <option value="3">注意</option>
+                                        <option value="4">警告</option>
+                                        <option value="5">错误</option>
+                                        <option value="6">致命错误</option>
+                                        <option value="7">警戒</option>
+                                        <option value="8">紧急</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:right;width:100px;">远程log服务器：</td>
+                                <td style="text-align:left"><input type="text" id="log_remote" style="height:25px;width:200px"></td>
+                                <td style="text-align:right;width:100px;">Cron日志级别：</td>
+                                <td style="text-align:left">
+                                    <select id="log_cron" style="height:25px;width:200px">
+                                        <option value="1">调试</option>
+                                        <option value="2">警告</option>
+                                        <option value="3">正常</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:right;width:50px;">远程log服务器端口：</td>
+                                <td style="text-align:left"><input type="text" id="log_port" style="height:25px;width:200px"></td>
+                                <td colspan="2" style="text-align:right"><input type="button" onclick="Apply_Log();" value="应用" style="height:25px;width:45px;text-align:center !important">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+
+                        </table>
+
+
+                        
+                    </div>
+
+                    
+                    <div class="innerbox">
+                        <table style="width:96%">
+                            <tr>
+                                <td style="text-align:right;width:100px;">开始时间：</td>
+                                <td style="text-align:left">
+                                    <input name="date" type="text" id="start_time" onfocus="setday(this)" style="height:25px;width:200px" />
+                                </td>
+                                <td style="text-align:right;width:100px;">结束时间：</td>
+                                <td style="text-align:left">
+                                    <input name="date" type="text" id="start_time" onfocus="setday(this)" style="height:25px;width:200px" />
+                                </td>
+                                <td style="text-align:center">
+                                    <input type="button" onclick="" value="查询" style="height:25px;width:45px;text-align:center !important">
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+
+                    <div class="innerbox">
+
+                        <table style="width:96%">
+                            <tr>
+                                <td>序号</td>
+                                <td>发生时间</td>
+                                <td>事件名称</td>
+                                <td>记录等级</td>
+                                <td>日志级别</td>
+                                <td>详细信息</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+				</div>
+				<div  id="tab-3" class="tab">
+					<h2>管理权限</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	用户名
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="manage_user">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	密码
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="manage_pwd">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	SSH访问
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="manage_ssh" value="YES" id="manage_ssh_yes" />&nbsp;是&nbsp;<input type="radio" name="manage_ssh" value="NO" id="manage_ssh_no" />&nbsp;否
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	端口
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="manage_port">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	允许SSH密码验证
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="manage_ssh_cer" value="YES" id="manage_ssh_cer_yes" />&nbsp;是&nbsp;<input type="radio" name="manage_ssh_cer" value="NO" id="manage_ssh_cer_no" />&nbsp;否
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	时间设置
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="manage_time"><input type="button" value="对时" style="height:25px;width:45px;text-align:left !important">
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li>
+                                <div style="text-align:right;width:500px"><input type="button" onclick="Apply_Jurisdiction();" value="应用" style="height:25px;width:45px;text-align:center !important"></div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+				</div>
+
+                <div id="tab1" class="tab">
+                    <h2>备份/升级</h2>
+                    <div class="innerbox">
+
+                        <table style="width:96%">
+                            <tr><td style="text-align:left;background-color:#8FC6FC;font-size:x-large;height:50px" colspan="2">&nbsp;&nbsp;恢复/备份</td></tr>
+                            <tr><td colspan="2" style="text-align:left;"><font color=" red">&nbsp;&nbsp;备份/恢复当前系统配置文件重置</font></td></tr>
+                            <tr><td style="width:15%;text-align:right;background-color:#8FC6FC">下载备份：</td><td style="width:85%;text-align:left">&nbsp;<input type="button" value="生成备份" style="height:25px !important;width:90px !important" /></td></tr>
+                            <tr><td style="width:15%;text-align:right;background-color:#8FC6FC">恢复到出厂设置：</td><td style="width:85%;text-align:left">&nbsp;<input type="button" value="执行复位" style="height:25px !important;width:90px !important" /></td></tr>
+                            <tr><td colspan="2" style="text-align:left;"><font color="red">&nbsp;&nbsp;上传兼容的固件以刷新当前系统</font></td></tr>
+                            <tr>
+                                <td style="width:15%;text-align:right;background-color:#8FC6FC">恢复配置：</td>
+                                <td style="width:85%;text-align:left">
+                                    &nbsp;<input type="file" name="file" id="file_upload" style="height:25px !important;width:300px !important" />
+                                    &nbsp;<input type="button" value="上传备份" style="height:25px !important;width:90px !important" onclick="Upload_File()" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+
+                        <table style="width:96%">
+                            <tr><td style="text-align:left;background-color:#8FC6FC;font-size:x-large;height:50px" colspan="2">&nbsp;&nbsp;刷写新的固件</td></tr>
+                            <tr><td colspan="2" style="text-align:left;"><font color="red">&nbsp;&nbsp;上传备份存档以恢复配置</font></td></tr>
+
+                            <tr><td style="width:15%;text-align:right;background-color:#8FC6FC">保留配置：</td><td style="width:85%;text-align:left"><span class="check_01"><input type="checkbox" name="vehicle" value="是" checked="true" /><p>是</p></span></td></tr>
+                            <tr>
+                                <td style="width:15%;text-align:right;background-color:#8FC6FC">固件文件：</td>
+
+                                <td style="width:85%;text-align:left">
+                                    <form method="post" action="file/update0" enctype="multipart/form-data">
+                                        &nbsp;<input type="file" name="file" id="file_upload" style="height:25px !important;width:300px !important" />
+                                        &nbsp;<input type="submit" value="刷写固件" style="height:25px !important;width:90px !important" />
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+				</div>
+			</div>
+			
+			<div class="menu3 menu_tab">
+				<div id="tab-3-1" class="tab">
+					<h2>远程传输设置</h2>
+                    <div class="innerbox">
+					<ul class="detail">
+                        	<li class="detail_l">
+                            	中心服务器选择：
+                            </li>
+                            <li class="detail_r">
+                            	<select id="remote_group" onchange="Show_Remote_Transmission();">
+                                  <option value="0">1组</option>
+                                  <option value="1">2组</option>
+                                  <option value="2">3组</option>
+                                  <option value="3">4组</option>
+                                </select>
+                                <font color="red">请选择一组进行配置，注意保存</font>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                是否启用：
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="remote_group_is" value="YES" id="remote_group_is_yes" />&nbsp;是&nbsp;<input type="radio" name="remote_group_is" value="NO" id="remote_group_is_no" />&nbsp;否
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	以太网工作模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="remote_working_type">
+                                    <option value="0">TCP</option>
+                                    <option value="1">UDP</option>
+                                </select>
+                                <select id="remote_working_cs">                                
+                                    <OPTION VALUE="0" SELECTED>客户端
+                                    <OPTION VALUE="1">服务端
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	协议：
+                            </li>
+                            <li class="detail_r">
+                                <select id="remote_proto">
+                                    <option value="0">Modbus TCP</option>
+                                </select>
+                                <select id="remote_proto_ms">         
+                                    <OPTION VALUE="0" SELECTED>从机
+                                    <OPTION VALUE="1">主机
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	域名地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="remote_ip">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                            <li class="detail_l">
+                                域名端口：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="remote_port">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	上传间隔：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="remote_upload_interval">
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	是否启用心跳包：
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="remote_heartbeat" value="YES" id="remote_heartbeat_yes" />&nbsp;是&nbsp;<input type="radio" name="remote_heartbeat" value="NO" id="remote_heartbeat_no" />&nbsp;否
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_Remote_Transmission_downlist();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+				</div>
+				<div  id="tab-3-2" class="tab">
+                	<h2>本地网络配置</h2>
+                    <div class="innerbox">
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                设置模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="local_dhcp" onchange="Show_Local_Setup();">
+                                    <option value="0">手动模式</option>
+                                    <option value="1">自动模式</option>
+                                </select>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	IP 地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="local_ip">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	子网掩码：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="local_mask">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	网关：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="local_gateway">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	DNS：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="local_dns">
+                            </li>
+                        </ul>
+                        
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input class="time" type="button" onclick="Apply_Local_Network_Configuration();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+                       
+                        
+                        
+                    </div>
+                </div>
+			</div>
+            
+            
+			<div class="menu4 menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>ZIGBEE 配置</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	ZIGBEE工作模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="ZIGBEE_Working_Mode">
+                                    <option value="1">终端设备</option>
+                                    <option value="2">路由器设备</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	panID：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="ZIGBEE_panID">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	本地网络地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="ZIGBEE_Local_Address">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	本地MAC地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="ZIGBEE_Local_Mac">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	目的网络地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="ZIGBEE_Destination_Address">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	目的MAC地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="ZIGBEE_Destination_Mac">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	信道：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="ZIGBEE_Channel">
+                            </li>
+                        </ul>
+                        <ul class="detail">用户变量
+                        	<li class="detail_l">
+                            	发送模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="ZIGBEE_Transmission_Mode">
+                                    <option value="1">单播</option>
+                                    <option value="2">广播</option>
+
+                                </select>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_ZIGBEE();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+                        
+                        
+                    </div>
+				</div>
+			</div>
+			<div class="menu5 menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>LORA配置</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	载波频率：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="LORA_Carrier_Frequency">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	扩频因子：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="LORA_Spreading_Factor">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	工作模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="LORA_Working_Mode">
+                                    <option value="1">全速模式</option>
+                                    <option value="2">低电流模</option>
+                                    <option value="3">休眠模式</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	扩频带宽：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="LORA_Spread">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	用户ID：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="LORA_USERID">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	网络ID：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="LORA_NETWORKID">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	发射功率：
+                            </li>
+                            <li class="detail_r">
+                                <select id="LORA_Transmit_Power">
+                                    <option value="1">1级</option>
+                                    <option value="2">2级</option>
+                                    <option value="3">3级</option>
+                                    <option value="4">4级</option>
+                                    <option value="5">5级</option>
+                                    <option value="6">6级</option>
+                                    <option value="7">7级</option>
+                                    <option value="8">8级</option>
+                                </select>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_LORA();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+
+                    </div>
+				</div>
+				</div>
+			<div class="menu6 menu_tab">
+				<div id="tab-6-1" class="tab">
+					<h2>GPRS 配置——工作模式及中心配置</h2>
+                    <div class="innerbox">
+					<ul class="detail">
+                        	<li class="detail_l">
+                            	中心服务器选择：
+                            </li>
+                            <li class="detail_r">
+                                <select id="GPRS_group" onchange="Show_GPRS_Transmission()">
+                                    <option value="0">1组</option>
+                                    <option value="1">2组</option>
+                                    <option value="2">3组</option>
+                                    <option value="3">4组</option>
+                                </select>
+                                <font color="red">请选择一组进行配置，注意保存</font>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                是否启用：
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="GPRS_group_is" value="YES" id="GPRS_group_is_yes" />&nbsp;是&nbsp;<input type="radio" name="GPRS_group_is" value="NO" id="GPRS_group_is_no" />&nbsp;否
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	以太网工作模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="GPRS_working_type">
+                                    <option value="0">TCP</option>
+                                </select>
+                                <select id="GPRS_working_cs">                                
+                                    <OPTION VALUE="0" SELECTED>客户端
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	协议：
+                            </li>
+                            <li class="detail_r">
+                                <select id="GPRS_proto">
+                                    <option value="0">Modbus TCP</option>
+                                </select>
+                                <select id="GPRS_proto_ms">         
+                                    <OPTION VALUE="0" SELECTED>从机
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	域名地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_peer_ip">
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                域名端口：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_peer_port">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	上传间隔：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_upload_interval">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                            <li class="detail_l">
+                                是否启用心跳包：
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="GPRS_heartbeat" value="YES" id="GPRS_heartbeat_yes" />&nbsp;是&nbsp;<input type="radio" name="GPRS_heartbeat" value="NO" id="GPRS_heartbeat_no" />&nbsp;否
+                            </li>
+                        </ul>
+
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_gprs_Transmission_downlist();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+</div>
+                    
+				</div>
+			<div  id="tab-6-2" class="tab">
+                
+                	<h2>GPRS 工作参数配置</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	工作模式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="GPRS_Config_Mode">
+                                    <option value="1">全速模式</option>
+                                    <option value="2">低电流模</option>
+                                    <option value="3">休眠模式</option>
+
+                                </select>
+                            </li>
+                        </ul>
+                      <ul class="detail">
+                        	<li class="detail_l">
+                            	激活方式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="GPRS_Config_Activation">
+                                    <option value="1">自动</option>
+                                    <option value="2">按需</option>
+                                    <option value="3">手动</option>
+
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	调试等级：
+                            </li>
+                            <li class="detail_r">
+                                <select id="GPRS_Config_Level">
+                                    <option value="1">0</option>
+                                    <option value="2">1</option>
+                                    <option value="3">2</option>
+
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	SIM卡号码（11位）：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Config_SIM">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	数据帧时间（MS）：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Config_MS">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	自定义注册包：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Config_Reg">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	自定义心跳包：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Config_Jump">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	重连次数：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Config_Time">
+                            </li>
+                        </ul>
+
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_GPRS_Config();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+
+                    </div>
+                 
+                </div>
+              <div  id="tab-6-3" class="tab">
+			  
+                	<h2>无线参数</h2>
+                    <div class="innerbox">
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	无线网络APN：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Wireless_APN">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	APN用户名：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Wireless_User">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	APN密码：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Wireless_PWD">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	APN拨号号码：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Wireless_NUM">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	短信中心号码：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="GPRS_Wireless_Center">
+                            </li>
+                        </ul>
+
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_GPRS_Wireless();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+                </div>
+             
+			</div>
+			</div>
+		   <div class="menu7 menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>串口配置</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	选择串口：
+                            </li>
+                            <li class="detail_r">
+                                <select id="Serial_Port_Select" onchange="Show_Serial_Port()">
+                                    <option value="0">串口1</option>
+                                    <option value="1">串口2</option>
+                                    <option value="2">串口3</option>
+                                    <option value="3">串口4</option>
+                                </select>
+                                <font color="red">请选择一组进行配置，注意保存</font>
+
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                串口模式：
+                            </li>
+                            <li class="detail_r">
+								<SELECT id="Serial_Port_Mode" onchange="">
+                                    <OPTION VALUE="0" SELECTED>RS232
+                                    <OPTION VALUE="1">RS485
+                                </SELECT>
+                                <div />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">后期硬件系统自动检测RS485或RS232</font>
+                            </li>
+                            
+                        </ul>
+						
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	协议配置：
+                            </li>
+                            <li class="detail_r">
+                                <select id="Serial_Port_proto">
+                                    <option value="0">Modbus RTU</option>
+                                </select>
+                                <select id="Serial_Port_proto_ms">
+                                    <OPTION VALUE="0" SELECTED>从机
+                                    <OPTION VALUE="1">主机
+                                </select>    
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	从机地址：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Serial_Port_ModbusAddr">
+                            </li>
+                        </ul>
+                        
+                        <ul class="detail">
+                            <li class="detail_l">
+                                串口波特率：
+                            </li>
+                            <li class="detail_r">
+                                <select id="Serial_Port_Rate">
+                                    <OPTION VALUE="2400">2400
+                                    <OPTION VALUE="4800">4800
+                                    <OPTION VALUE="9600">9600
+                                    <OPTION VALUE="38400">38400
+                                    <OPTION VALUE="57600">57600
+                                    <OPTION VALUE="115200" SELECTED>115200
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	数据位：
+                            </li>
+                            <li class="detail_r">
+
+                                <select id="Serial_Port_Data">
+                                    <option value="81">8N1</option>
+                                    <option value="82">8N2</option>
+                                    <option value="91">9N1</option>
+                                    <option value="92">9N2</option>
+                                </select>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	采集间隔（MS）：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Serial_Port_Interval">
+                            </li>
+                        </ul>
+                       
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_Serial_Port();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+
+                </div>
+                
+                   
+              
+                 
+                </div>
+			</div>
+			
+			
+             <div class="menu8 menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>开关量输入设置</h2>
+                    <div class="innerbox">
+                        <table>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is1" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道1：</td>
+                                <td style="width:80px !important"><div id="switch_state1" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval1"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression1"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is2" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道2：</td>
+                                <td style="width:80px !important"><div id="switch_state2" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval2"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression2"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is3" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道3：</td>
+                                <td style="width:80px !important"><div id="switch_state3" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval3"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression3"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is4" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道4：</td>
+                                <td style="width:80px !important"><div id="switch_state4" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval4"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression4"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is5" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道5：</td>
+                                <td style="width:80px !important"><div id="switch_state5" style="width:80px !important">【打开】</div></td>
+                                <td style ="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval5"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression5"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is6" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道6：</td>
+                                <td style="width:80px !important"><div id="switch_state6" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval6"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression6"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is7" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道7：</td>
+                                <td style="width:80px !important"><div id="switch_state7" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval7"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression7"></td>
+                            </tr>
+                            <tr>
+                                <td><input name="road_turnno" type="checkbox" id="switch_is8" value="" />&nbsp;是否启用</td>
+                                <td style="width:80px !important">通道8：</td>
+                                <td style="width:80px !important"><div id="switch_state8" style="width:80px !important">【打开】</div></td>
+                                <td style="width:80px !important">间隔：</td>
+                                <td style="width:60px !important"><input type="text" style="height:25px;width:60px;" id="switch_interval8"></td>
+                                <td style="width:80px !important">表达式：</td>
+                                <td><input type="text" style="height:25px" id="switch_expression8"></td>
+                            </tr>
+                        </table>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:500px"><input type="button" onclick="Apply_Switch();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+                        
+                	</div>
+				</div>
+			</div>
+             <div class="menu9 menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>开关量输出设置</h2>
+                    <div class="innerbox">
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	继电器1
+                            </li>
+                            <li class="detail_r">
+                            	<li class="detail_r">
+                            	  <form>
+                                    <div style="float: left; margin-left:20px;">
+                                      <p>
+                                          <input type="button" id="Output_State1" style="width:36px;text-align:left !important" value="关" onclick="OutPutClick(1)"/>
+                                      </p>
+                                    </div>
+                                  </form>
+                                <div style="float:left;">
+                                <span>表达式</span>
+                                    <input type="text" id="Output_Expression1">
+                                </div>
+                            	</li>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	继电器2
+                            </li>
+                            <li class="detail_r">
+                            	<li class="detail_r">
+                            	<form>
+                                    <div style="float: left; margin-left:20px;">
+                                      <p>
+                                          <input type="button" id="Output_State2" style="width:36px;text-align:left !important" value="关" onclick="OutPutClick(2)"/>
+                                      </p>
+                                    </div>
+                                  </form>
+                                <div style="float:left;">
+                                <span>表达式</span>
+                                    <input type="text" id="Output_Expression2">
+                                </div>
+                            	</li>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	继电器3
+                            </li>
+                            <li class="detail_r">
+                            	<li class="detail_r">
+                            	<form>
+                                    <div style="float: left; margin-left:20px;">
+                                      <p>
+                                          <input type="button" id="Output_State3" style="width:36px;text-align:left !important" value="关" onclick="OutPutClick(3)"/>
+                                      </p>
+                                    </div>
+                                  </form>
+                                <div style="float:left;">
+                                <span>表达式</span>
+                                    <input type="text" id="Output_Expression3">
+                                </div>
+                            	</li>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	继电器4
+                            </li>
+                            <li class="detail_r">
+                            	<li class="detail_r">
+                            	<form>
+                                    <div style="float: left; margin-left:20px;">
+                                      <p>
+                                          <input type="button" id="Output_State4" style="width:36px;text-align:left !important" value="关" onclick="OutPutClick(4)"/>
+                                      </p>
+                                    </div>
+                                  </form>
+                                <div style="float:left;">
+                                <span>表达式</span>
+                                    <input type="text" id="Output_Expression4">
+                                </div>
+                            	</li>
+                            </li>
+                        </ul>
+                         <ul class="detail">
+                        	<li class="detail_l">
+                            	TTL1
+                            </li>
+                            <li class="detail_r">
+                            	<li class="detail_r">
+                            	<form>
+                                    <div style="float: left; margin-left:20px;">
+                                      <p>
+                                          <input type="button" id="Output_State5" style="width:36px;text-align:left !important" value="低" onclick="OutPutClick(5)"/>
+                                      </p>
+                                    </div>
+                                  </form>
+                                <div style="float:left;">
+                                <span>表达式</span>
+                                    <input type="text" id="Output_Expression5">
+                                </div>
+                            	</li>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	TTL2
+                            </li>
+                            <li class="detail_r">
+                            	<li class="detail_r">
+                            	<form>
+                                    <div style="float: left; margin-left:20px;">
+                                      <p>
+                                          <input type="button" id="Output_State6" style="width:36px;text-align:left !important" value="低" onclick="OutPutClick(6)"/>
+                                      </p>
+                                    </div>
+                                  </form>
+                                <div style="float:left;">
+                                <span>表达式</span>
+                                    <input type="text" id="Output_Expression6">
+                                </div>
+                            	</li>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:500px"><input type="button" onclick="Apply_Output();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+
+                	</div>
+				</div>
+			</div>
+            <div class="menub menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>模拟量输入设置</h2>
+                    <div class="innerbox">
+                        
+                        
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	通道选择：
+                            </li>
+                            <li class="detail_r">
+                            	<select id="Input_Select" onclick="Show_Input();">
+                                  <option value ="0">1</option>
+                                  <option value ="1">2</option>
+                                  <option value ="2">3</option>
+                                  <option value ="3">4</option>
+                                  <option value ="4">5</option>
+                                  <option value ="5">6</option>
+                                  <option value ="6">7</option>
+                                  <option value ="7">8</option>
+                                </select>
+                                <font color="red">请选择一组进行配置，注意保存</font>
+                            </li>
+                        </ul>
+
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                是否启用：
+                            </li>
+                            <li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Input_Group_Is" value="YES" id="Input_Group_Is_yes" />&nbsp;是&nbsp;<input type="radio" name="Input_Group_Is" value="NO" id="Input_Group_Is_no" />&nbsp;否
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	采集间隔（MS）：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Interval">
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	数据格式：
+                            </li>
+                            <li class="detail_r">
+                                <select id="Input_Format" onchange="Hide_Input()">
+                                    <option value="0">工程量</option>
+                                    <option value="1">补码</option>
+                                    <option value="2">百分比(全量程范围)</option>
+                                    <option value="3">仪表测量数据</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	量程设置：
+                            </li>
+                            <li class="detail_r">
+                                <select id="Input_Range">
+                                    <option value="0">4-20 MA</option>
+                                </select>
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                工程量实测值：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Range_Engineering">
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                电参数实测值：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Range_Electrical">
+                            </li>
+                        </ul>
+
+                        <ul class="detail" id="Input_Show_Max" style="display:none">
+                        	<li class="detail_l">
+                            	最大量程：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Range_Max">
+                            </li>
+                        </ul>
+                        <ul class="detail" id="Input_Show_Min" style="display:none">
+                        	<li class="detail_l">
+                            	最小量程：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Range_Min">
+                            </li>
+                        </ul>
+                        <ul class="detail" id="Input_Show_Factor" style="display:none">
+                        	<li class="detail_l">
+                            	修正系数：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Correction_Factor">
+                            </li>
+                        </ul>
+						
+                        <ul class="detail">
+                        	<li class="detail_l">
+                            	表达式：
+                            </li>
+                            <li class="detail_r">
+                                <input type="text" id="Input_Expression">
+                            </li>
+                        </ul>
+
+                        <ul class="detail">
+                            <li class="detail_l">
+                                &nbsp;
+                            </li>
+                            <li class="detail_r">
+                                <div style="text-align:right;width:350px"><input type="button" onclick="Apply_Input();" value="应用" style="width:45px;text-align:left !important"></div>
+                            </li>
+                        </ul>
+
+               	    </div>
+				</div>
+			</div>
+      
+            <!--
+			<div class="menua menu_tab">
+				<div  id="tab1" class="tab">
+                    <div class="innerbox">
+
+
+                        <div style="height:185px; overflow:auto;width:100% !important;">
+
+                            <table style="width:96%">
+                                <tr>
+                                    <td style="background-color:#8FC6FC">脚本编号</td>
+                                    <td style="background-color:#8FC6FC">脚本标题</td>
+                                    <td style="background-color:#8FC6FC">脚本时间</td>
+                                    <td style="background-color:#8FC6FC" colspan="2">操作</td>
+                                </tr>
+                                <tr>
+                                    <td>0</td>
+                                    <td>脑柜筋台炽纲</td>
+                                    <td>2016-5-22 18：11</td>
+                                    <td><input type="button" value="查看" style="height:25px !important;width:60px !important" /></td>
+                                    <td><input type="button" value="删除" style="height:25px !important;width:60px !important" /></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>军刀山检基上市械炽架芭</td>
+                                    <td>2016-5-23 15：21</td>
+                                    <td><input type="button" value="查看" style="height:25px !important;width:60px !important" /></td>
+                                    <td><input type="button" value="删除" style="height:25px !important;width:60px !important" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>发有有人用基</td>
+                                    <td>2016-5-23 08：40</td>
+                                    <td><input type="button" value="查看" style="height:25px !important;width:60px !important" /></td>
+                                    <td><input type="button" value="删除" style="height:25px !important;width:60px !important" /></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="innerbox">
+                        <table style="width:96%">
+                            <tr><td style="width:15%">脚本编号：</td><td style="width:85%"><input type="text" value="" style="width:100%;height:25px !important" /></td></tr>
+                            <tr><td style="width:15%">脚本标题：</td><td style="width:85%"><input type="text" value="" style="width:100%;height:25px !important" /></td></tr>
+                            <tr><td style="width:15%">脚本内容：</td><td style="width:85%"><textarea style="margin-top:20px;height:200px;width:100%;"></textarea></td></tr>
+                            <tr><td colspan="2"><input class="time" type="button" onclick="Apply_Jurisdiction();" value="应用" style="width:90px;text-align:left !important"></td></tr>
+                        </table>
+                    </div>
+
+
+                    </div>
+			</div>
+            -->
+			<div class="menuc menu_tab">
+				<div  id="tab1" class="tab">
+					<h2>变量采集</h2>
+
+                    <div class="innerbox">
+                        <div><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">下面显示当前选中的采集变量的详细信息：</font></div>
+                        <table>
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">编号：</td><td><input type="text" readonly="readonly" id="var_ext_id" value="0" disabled="disabled" style="height:25px !important" /></td>
+                                <td style="text-align:right;background-color:#8FC6FC">有效：</td><td><select id="var_ext_enable" style="height:25px !important;width:100% !important"><option value="0">无效</option><option value="1">有效</option></select></td>
+                                <td style="text-align:right;background-color:#8FC6FC">读写：</td><td><select style="height:25px !important;width:100% !important" id="var_ext_varrw"><option value="0">只读</option><option value="1">只写</option><option value="2">读写</option></select></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">映射地址：</td><td><input type="text" id="var_ext_addr" maxlength="6" value="1024" style="height:25px !important" /></td>
+                                <td colspan="6" style="text-align:left">&nbsp;<font color="red">RTU内部寄存器映射地址,范围1024-2048</font></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">变量名：</td>
+                                <td><input type="text" value="TEST1" style="height:25px !important" id="var_ext_name" maxlength="6"/></td>
+                                <td style="text-align:right;background-color:#8FC6FC">别名：</td>
+                                <td><input type="text" value="T1" style="height:25px !important" id="var_ext_alias" maxlength="4"/></td>
+                                <td style="text-align:right;background-color:#8FC6FC">数据类型：</td>
+                                <td><select style="height:25px !important;width:100% !important" id="var_ext_vartype" onchange="onVarExtVartypeChange(this)">
+                                    <OPTION VALUE="0">BIT
+                                    <OPTION VALUE="1" SELECTED>INT8
+                                    <OPTION VALUE="2">UINT8
+                                    <OPTION VALUE="3">INT16
+                                    <OPTION VALUE="4">UINT16
+                                    <OPTION VALUE="5">INT32
+                                    <OPTION VALUE="6">UINT32
+                                    <OPTION VALUE="7">FLOAT
+                                    <OPTION VALUE="8">DOUBLE
+                                    <OPTION VALUE="9">ARRAY
+                                </select></td>
+                                <td style="text-align:right;background-color:#8FC6FC">长度：</td>
+                                <td><input type="text" value="4" id="var_ext_varsize" maxlength="1" disabled="true" style="height:25px !important" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">驱动：</td>
+                                <td><select style="height:25px !important;width:100% !important" id="var_ext_devtype"></select></td>
+                                <td style="text-align:right;background-color:#8FC6FC">更新时间：</td>
+                                <td><input type="text" value="1000" style="height:25px !important" id="var_ext_interval" maxlength="11"/></td>
+                                <td colspan="4" style="text-align:left">ms&nbsp;
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">从机地址：</td>
+                                <td><input type="text" value="5" style="height:25px !important" id="var_ext_slaveaddr" maxlength="4"/></td>
+                                <td style="text-align:right;background-color:#8FC6FC">从机寄存器：</td>
+                                <td><input type="text" value="10" style="height:25px !important" id="var_ext_extaddr" maxlength="4"/></td>
+                                <td style="text-align:right;background-color:#8FC6FC">偏移：</td>
+                                <td><input type="text" value="0" style="height:25px !important" id="var_ext_extaddrofs" maxlength="4"/></td>
+
+                                <td colspan="4" style="text-align:left">&nbsp;<input type="button" value="应用" style="height:25px !important;width:60px !important" onclick="setVarExtInfo()" /></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="innerbox">
+
+                        <div style="height:400px; overflow:auto">
+                            <table id="rtu_var_ext_table">
+                                <tr>
+                                    <td style="background-color:#8FC6FC">编号</td>
+                                    <td style="background-color:#8FC6FC">有效</td>
+                                    <td style="background-color:#8FC6FC">名称</td>
+                                    <td style="background-color:#8FC6FC">别名</td>
+                                    <td style="background-color:#8FC6FC">类型</td>
+                                    <td style="background-color:#8FC6FC">长度</td>
+                                    <td style="background-color:#8FC6FC">间隔</td>
+                                    <td style="background-color:#8FC6FC">数值</td>
+                                    <td style="background-color:#8FC6FC">驱动协议</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div  id="tab1" class="tab">
+					<h2>用户变量</h2>
+                    <div class="innerbox">
+                        <table style="width:960px">
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">序号：</td>
+                                <td colspan="3" style="text-align:left !important"><input id="user_defin_id" style="width:350px;height:25px;" /></td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">变量名：</td>
+                                <td style="text-align:left !important"><input id="user_defin_name" style="width:350px;height:25px;" /></td>
+                                <td style="text-align:right;background-color:#8FC6FC">数据类型：</td>
+                                <td style="text-align:left !important"><input id="user_defin_type" style="width:350px;height:25px;" /></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;background-color:#8FC6FC">别名：</td>
+                                <td style="text-align:left !important"><input id="user_defin_rename" style="width:350px;height:25px;" /></td>
+                                <td style="text-align:right;background-color:#8FC6FC">备注说明：</td>
+                                <td style="text-align:left !important"><input id="user_defin_note" style="width:350px;height:25px;" /></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="4" style="text-align:right !important"><input value="保存" type="button" style="width:60px;height:25px;" />&nbsp;<input value="删除" type="button" style="width:60px;height:25px;" />&nbsp;</td>
+                            </tr>
+
+                        </table>
+               	    </div>
+
+                    <div class="innerbox">
+                        <div id="div_userdefine">
+                            <table style="width:96%;" >
+                                <tr style="background-color:#8FC6FC">
+                                    <td>选择</td>
+                                    <td>序号</td>
+                                    <td>变量名</td>
+                                    <td>数据类型</td>
+                                    <td>别名</td>
+                                    <td>表达式</td>
+                                    <td>备注说明</td>
+                                    <td>操作</td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>001</td>
+                                    <td>XXX</td>
+                                    <td>XXX</td>
+                                    <td>XXX</td>
+                                    <td>XXX</td>
+                                    <td>--</td>
+                                    <td><input value="查询" type="button" style="width:60px;height:25px;" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" /></td>
+                                    <td>001</td>
+                                    <td>XXX</td>
+                                    <td>XXX</td>
+                                    <td>XXX</td>
+                                    <td>XXX</td>
+                                    <td>--</td>
+                                    <td><input value="查询" type="button" style="width:60px;height:25px;" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+				</div>
+			</div>     		
+		</div>
+
+	</div>
+
+    <div id="mainbox" style="display:none"> <div id="box0"></div><div id="box1">↓</div> <div id="items"> </div> </div>
+    <div id="mainbox" style="display:none"> <div id="box00"></div><div id="box11">↓</div> <div id="itemss" style=""> </div> </div>
+
+    <div class="container">
+    <div class="foot">
+    	<span>Copyright © 2016.Company name All rights reserved.</span>
+    </div>
+    </div>
+</body>
+
+	<script type="text/javascript" src="js/pc.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(e) {
+	$('.lcs_check').lc_switch();
+	// triggered each time a field changes status
+	$('body').delegate('.lcs_check', 'lcs-statuschange', function() {
+		var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
+		//console.log('field changed status: '+ status );
+	});
+
+
+});
+</script> 
+</html>

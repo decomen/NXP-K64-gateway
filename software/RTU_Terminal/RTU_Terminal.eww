@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\RTU1\RTU1_AD7707.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\RTU2\RTU2_AD7689.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\RTU3\RTU3_M26.ewp</path>
+  </project>
+  <batchBuild/>
+</workspace>
+
+

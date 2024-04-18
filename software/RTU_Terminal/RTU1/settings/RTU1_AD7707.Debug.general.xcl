@@ -1,0 +1,13 @@
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armproc.dll" 
+
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armsim2.dll" 
+
+"I:\project\rtucode\RTU_Terminal\RTU1\Debug\Exe\RTU1_AD7707.out" 
+
+--plugin "D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\bin\armbat.dll" 
+
+--device_macro "D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\arm\config\debugger\NXP\K6x.dmac" 
+
+
+
+

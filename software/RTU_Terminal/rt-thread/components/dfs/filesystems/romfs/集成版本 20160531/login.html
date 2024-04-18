@@ -1,0 +1,92 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>登录界面</title>
+<meta name="keywords" content="关键词，关键词"/>
+<meta name="description" content=""/>
+<link href="css/style.css" rel="stylesheet"/>
+
+
+<script type="text/javascript">
+    function check()
+    {
+        var user = window.document.getElementById("user").value;
+        var pwd = window.document.getElementById("pwd").value;
+        if (user == "")
+        {
+            alert("请输入姓名！");
+        }
+        else if (pwd == "")
+        {
+            alert("请输入密码！");
+        }
+        else
+        {
+            if (user == "admin" && pwd == "123456")
+            {
+                self.location = 'index.html';
+            }
+            else
+            {
+                alert('用户名或密码不对！');
+            }
+            //form1.submit();
+        }
+    }
+</script>
+
+
+
+</head>
+
+<body>
+<div class="logo_01">
+    	<img src="images/logo2.png">
+</div>
+<div class="logo_02">
+    	IEMILEDW — 川赤范盛顿例
+</div>
+<div id="Logo">
+	
+    
+    <form class="form" name="form1" method="post" action="">
+        <div class="form_box">
+            <p><img src="images/1.png"/><input type="text" name="user" id="user" placeholder="用&nbsp;&nbsp;户&nbsp;&nbsp;名"></p>
+            <p><img src="images/2.png"/><input type="password" name="pwd" id="pwd" placeholder="密&nbsp;&nbsp;&nbsp;码"></p>
+            <p class="che"><input id="checkbox1" type="checkbox" value="记住密码">&nbsp;&nbsp;记 住 密 码</p>
+        </div>
+        <div class="form_submit">
+            <a href="#" onclick="check();"></a>
+        </div>
+    </form>
+<div class="footbox">Copyright © 2016.Company name All rights reserved.</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
