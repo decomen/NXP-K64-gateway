@@ -58,11 +58,8 @@
 
 ![](https://github.com/decomen/Nuvoton-NUC977-edge/blob/master/%E5%B0%8F%E7%94%B0.png)
 
-## 内核及文件系下载址
 
-百度网盘链接:https://pan.baidu.com/s/1-Y86874XgE2CWpXmYGpTlw 
-
-提取码:请扫描二维码跟客户获取。
+解压密码:请扫描二维码跟客户获取。
 
 ## 目录说明
 
